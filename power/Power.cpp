@@ -35,6 +35,10 @@
 #include "Power.h"
 #include "power-common.h"
 
+#ifndef TAP_TO_WAKE_NODE
+#define TAP_TO_WAKE_NODE "/sys/touchpanel/double_tap"
+#endif
+
 namespace android {
 namespace hardware {
 namespace power {
@@ -65,26 +69,16 @@ Return<void> Power::powerHint(PowerHint_1_0 hint, int32_t data) {
     return Void();
 }
 
-void set_feature(feature_t feature, int state) {
+Return<void> Power::setFeature(Feature feature, bool activate)  {
     switch (feature) {
 #ifdef TAP_TO_WAKE_NODE
-        case POWER_FEATURE_DOUBLE_TAP_TO_WAKE: {
-            int fd = open(TAP_TO_WAKE_NODE, O_RDWR);
-            struct input_event ev;
-            ev.type = EV_SYN;
-            ev.code = SYN_CONFIG;
-            ev.value = state ? INPUT_EVENT_WAKUP_MODE_ON : INPUT_EVENT_WAKUP_MODE_OFF;
-            write(fd, &ev, sizeof(ev));
-            close(fd);
-        } break;
+        case Feature::POWER_FEATURE_DOUBLE_TAP_TO_WAKE:
+            ::android::base::WriteStringToFile(activate ? "1" : "0", TAP_TO_WAKE_NODE);
+            break;
 #endif
         default:
             break;
     }
-}
-
-Return<void> Power::setFeature(Feature feature, bool activate)  {
-    set_feature(static_cast<feature_t>(feature), activate ? 1 : 0);
     return Void();
 }
 
