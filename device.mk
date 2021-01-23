@@ -103,6 +103,10 @@ PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \
     android.hardware.health@2.1-service
 
+# Syberia's Smart Charge
+PRODUCT_PACKAGES += \
+    vendor.syberia.smartcharge@1.0-service
+
 # Sensors
 PRODUCT_PACKAGES += \
     libsensorndkbridge \
