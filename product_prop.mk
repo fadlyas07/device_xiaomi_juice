@@ -6,11 +6,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     drm.service.enabled=true
 
-# Chrome flags
-PRODUCT_PROPERTY_OVERRIDES += \
-    com.android.chrome.Chrome.Flags.CachedFlag.DynamicColorAndroid=true \
-    com.android.chrome.Chrome.Flags.CachedFlag.ThemeRefactorAndroid=true
-
 # Enable blurs, hidden under dev option
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.surface_flinger.supports_background_blur=1 \
@@ -19,8 +14,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Graphics
 PRODUCT_PRODUCT_PROPERTIES += \
     debug.hwui.renderer=opengl \
-    debug.egl.hw=1 \
-    debug.egl.force.msaa=1 \
     debug.sf.hw=1 \
     debug.sf.latch_unsignaled=1 \
     ro.surface_flinger.running_without_sync_framework=true \
