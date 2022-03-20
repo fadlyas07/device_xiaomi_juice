@@ -6,16 +6,18 @@
 
 $(call inherit-product, device/xiaomi/juice/device.mk)
 
-# Inherit some Nitrogen-OS stuff.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-$(call inherit-product, vendor/nitrogen/products/common.mk)
+# Inherit Carbon GSM telephony parts
+$(call inherit-product, vendor/carbon/config/gsm.mk)
+
+# Inherit common.
+$(call inherit-product, vendor/carbon/config/common.mk)
 
 # Bootanimation
 TARGET_SCREEN_WIDTH := 1080
 TARGET_SCREEN_HEIGHT := 2340
 
 # Device identifier. This must come after all inclusions.
-PRODUCT_NAME := nitrogen_juice
+PRODUCT_NAME := carbon_juice
 PRODUCT_DEVICE := juice
 PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := sm6115
